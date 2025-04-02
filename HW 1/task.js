@@ -1,15 +1,24 @@
-const blockWindow = document.querySelectorAll('.reveal')
+const blockWindow = document.querySelector('.reveal');
 
-blockWindow.forEach(e => {
+const blocks = document.querySelectorAll('.reveal')
 
-    const { top, bottom } = e.getBoundingClientRect();
+blocks.forEach(e => {
 
-    if (bottom < 0) {
-        e.classList.add('reveal_active')
-    }
+    setInterval(() => {
 
-    if (top > window.innerHeight) {
-        e.classList.add('reveal_active')
-    }
+        const top2 = e.getBoundingClientRect().top;
+        const bottom2 = e.getBoundingClientRect().bottom;
     
+        if (top2 < window.innerHeight) {
+            e.classList.add('reveal_active');
+        }
+    
+        if (bottom2 < 0) {
+            e.classList.remove('reveal_active');
+        } else if (top2 > window.innerHeight) {
+            e.classList.remove('reveal_active');
+        }
+
+    }, 500)
+
 })
